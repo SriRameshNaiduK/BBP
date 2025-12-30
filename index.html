@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pentest Command Finder</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">
+        <h1>Pentest Command Finder</h1>
+        <p>Pick a specific task. Generate exact commands. Run them in Parrot/Kali.</p>
+      </div>
+      <div class="pill" id="pill">Playbook: loading…</div>
+    </header>
+
+    <section class="card">
+      <div class="cardTitle">
+        <h2>Inputs</h2>
+        <span class="meta">Domain → {domain}, Base URL → {url}, outputs → {outdir}</span>
+      </div>
+
+      <div class="grid">
+        <div class="field">
+          <label for="domain">Domain</label>
+          <input class="input" id="domain" type="text" placeholder="example.com" spellcheck="false" autocomplete="off" />
+          <small>Used for output path and domain-scoped commands.</small>
+        </div>
+
+        <div class="field">
+          <label for="url">Base URL</label>
+          <input class="input" id="url" type="text" placeholder="https://example.com" spellcheck="false" autocomplete="off" />
+          <small>Used for web endpoints and fuzzing tasks.</small>
+        </div>
+
+        <div class="field">
+          <label for="task">Task</label>
+          <select id="task"></select>
+          <small>Specific pentest step (recon, JS, vuln tracks, checks).</small>
+        </div>
+
+        <div class="field">
+          <label for="mode">Mode</label>
+          <select id="mode"></select>
+          <small>Fast / Deep / Stealth depending on the task.</small>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="gen">Generate commands</button>
+        <button class="btn2" id="copyAll" disabled>Copy all</button>
+        <button class="btn2" id="markDone" disabled>I ran these commands</button>
+        <button class="btn2" id="resetSession" disabled>Reset session</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="cardTitle">
+        <h2>Commands</h2>
+        <span id="meta" class="meta"></span>
+      </div>
+
+      <div id="notes" class="notes"></div>
+      <div id="output" class="output"></div>
+
+      <div class="statusBar">
+        <div class="status">
+          <span id="dot" class="dot"></span>
+          <span id="status" class="statusText"></span>
+        </div>
+        <span id="hint" class="meta"></span>
+      </div>
+    </section>
+  </div>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script defer src="./app.js"></script>
+</body>
+
+</html>
